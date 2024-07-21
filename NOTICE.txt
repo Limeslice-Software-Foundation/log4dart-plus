@@ -1,0 +1,5 @@
+Log4Dart Plus
+Copyright 2024 The Limeslice Software Foundation
+
+This product includes software developed at
+The Limeslice Software Foundation (https://limeslice.org).
