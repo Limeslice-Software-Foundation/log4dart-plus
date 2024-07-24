@@ -17,7 +17,7 @@ import 'level.dart';
 
 /// The internal representation of logging events. When an affirmative decision
 /// is made to log then a LoggingEvent instance is created. This instance is
-/// passed around to the different log4j components.
+/// passed around to the different Log4Dart Plus components.
 class LoggingEvent {
   Level level;
   String message;
