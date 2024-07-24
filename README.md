@@ -5,7 +5,7 @@ Log4Dart Plus is a versatile and highly configurable logging framework for Dart 
 Note that this project is still in its early stages and so may not yet provide complete/full functionality. We will be building up functionality over the next few months through numerous small iterative releases.
 
 ## Table of Contents
-- [Log 4 Dart 2](#l0g4dart-plus)
+- [Log 4 Dart Plus](#log4dart-plus)
   - [Table of Contents](#table-of-contents)
   - [About The Project](#about-the-project)
     - [Features](#features)
