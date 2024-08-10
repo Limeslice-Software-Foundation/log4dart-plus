@@ -10,9 +10,9 @@ Note that this project is still in its early stages and so may not yet provide c
   - [About The Project](#about-the-project)
     - [Features](#features)
   - [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Usage](#usage)
+    - [Installation](#installation)
     - [Import Package](#import-package)
+  - [Usage](#usage)
   - [Roadmap](#roadmap)
   - [Contributing](#contributing)
   - [License](#license)
@@ -20,7 +20,7 @@ Note that this project is still in its early stages and so may not yet provide c
   - [Acknowledgments](#acknowledgments)
   - [Limitation of Liability](#limitation-of-liability)
 
-<!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 ### Features
@@ -28,42 +28,33 @@ Note that this project is still in its early stages and so may not yet provide c
 - Various and multiple appenders can be configured for advanced logging capability.
 - Various and multiple layouts that can be used to output log messages in numerous formats.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
-To do: describe how to get started
+Add the package as a dependency.
 
 ### Installation
+Add the package to your dependencies.
 
 ```
 pub add log4dart_plus
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Usage
-
-To do: describe usage
-
 ### Import Package
 
-Import library
+Import the library in your code.
+
 ```Dart
 import 'package:log4dart_plus/log4dart_plus.dart';
 ```
 
+## Usage
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+See the [User Guide](docs/user-guide.md) for detailed information.
 
 ## Roadmap
 
-- [x] Add Changelog
-- [ ] Some cool new feature
-
 See the [open issues](https://github.com/Limeslice-Software-Foundation/log4dart-plus/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
 
@@ -78,25 +69,17 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contact
 
 Limeslice Software Foundation [https://limeslice.org](https://limeslice.org)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Acknowledgments
 
 We would like to thank the authors of the Apache Log4J package which has formed the basis of this package.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Limitation of Liability
 
