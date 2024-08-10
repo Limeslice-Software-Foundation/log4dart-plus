@@ -12,13 +12,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import '../logging_event.dart';
 
-/// Log4Dart Plus is a versatile and highly configurable logging framework
-/// for Dart / Flutter applications to assist the deployment of logging for
-/// various use cases.
-library;
+/// Responsible for formatting log messages. 
+/// Extend this abstract class to create your own log layout format.
+abstract class Layout {
+  /// Format the given logging event into a String representation.
+  String format(LoggingEvent event);
 
-export 'src/level.dart';
-export 'src/logging_event.dart';
-export 'src/layout/layout.dart';
-export 'src/layout/simple_layout.dart';
+  /// Return the MIME content type of this layout.
+  /// Default is test/plain
+  String getContentType() {
+    return 'text/plain';
+  }
+
+  /// Return the header for the layout.
+  String getHeader() {
+    return '';
+  }
+
+  /// Return the footer for the layout.
+  String getFooter() {
+    return '';
+  }
+
+  /// Returns true if the layout does not handle errors/exceptions, returns 
+  /// true otherwise.
+  bool ignoresException() {
+    return true;
+  }
+}
