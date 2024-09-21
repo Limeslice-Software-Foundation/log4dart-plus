@@ -13,13 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// Appenders may delegate their error handling to ErrorHandlers.
-/// Error handling is a particularly tedious to get right because by definition
-/// errors are hard to predict and to reproduce.
-abstract class ErrorHandler {
-  /// This method is invoked to handle the error.
-  void error(String message, [Exception ex]);
+import 'package:log4dart_plus/src/internal/loglog.dart';
+import 'package:test/test.dart';
 
-  /// Set the appender for which errors are handled.
-  void setAppender(String appenderName);
+void main() {
+  test('Test loglog messages', () {
+    LogLog.debug('debug message');
+    LogLog.error('error message');
+  });
 }

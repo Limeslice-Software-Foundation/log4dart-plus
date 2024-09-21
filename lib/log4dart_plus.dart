@@ -20,5 +20,8 @@ library;
 
 export 'src/level.dart';
 export 'src/logging_event.dart';
+export 'src/error/error_handler.dart';
+export 'src/appender/appender.dart';
+export 'src/appender/console_appender.dart';
 export 'src/layout/layout.dart';
 export 'src/layout/simple_layout.dart';
