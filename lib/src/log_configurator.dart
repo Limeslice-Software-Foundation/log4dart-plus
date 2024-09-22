@@ -12,33 +12,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import '../logging_event.dart';
+import 'appender/console_appender.dart';
+import 'layout/simple_layout.dart';
+import 'log_manager.dart';
 
-/// Responsible for formatting log messages.
-/// Extend this abstract class to create your own log layout format.
-abstract class Layout {
-  /// Format the given logging event into a String representation.
-  String format(LoggingEvent event);
-
-  /// Return the MIME content type of this layout.
-  /// Default is test/plain
-  String getContentType() {
-    return 'text/plain';
-  }
-
-  /// Return the header for the layout.
-  String getHeader() {
-    return '';
-  }
-
-  /// Return the footer for the layout.
-  String getFooter() {
-    return '';
-  }
-
-  /// Returns true if the layout does not handle errors/exceptions, returns
-  /// true otherwise.
-  bool ignoresException() {
-    return true;
+/// Utility class for performing configuration of the Log4Dart_plus system.
+class LogConfigurator {
+  /// Perform a basic configuration. This used SimpleLayout and ConsoleAppender.
+  static void doBasicConfiguration() {
+    LogManager.getRootLogger()
+        .addAppender(ConsoleAppender(layout: SimpleLayout()));
   }
 }
