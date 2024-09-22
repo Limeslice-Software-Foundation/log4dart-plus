@@ -44,7 +44,9 @@ abstract class Appender {
   }
 
   /// Close this appender
-  Future<void> close() async {}
+  Future<void> close() async {
+    closed = true;
+  }
 
   /// Append the logging event.
   void doAppend(LoggingEvent event);

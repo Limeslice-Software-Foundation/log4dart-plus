@@ -12,18 +12,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import 'package:log4dart_plus/log4dart_plus.dart';
 
-/// Log4Dart Plus is a versatile and highly configurable logging framework
-/// for Dart / Flutter applications to assist the deployment of logging for
-/// various use cases.
-library;
+/// An appender implementation used for testing purposes.
+class TestAppender extends Appender {
+  /// A buffer to hold logging output.
+  StringBuffer buffer;
 
-export 'src/level.dart';
-export 'src/logger.dart';
-export 'src/logging_event.dart';
-export 'src/error/error_handler.dart';
-export 'src/error/only_once_error_handler.dart';
-export 'src/appender/appender.dart';
-export 'src/appender/console_appender.dart';
-export 'src/layout/layout.dart';
-export 'src/layout/simple_layout.dart';
+  /// Create a new instance with an empty buffer.
+  TestAppender({super.layout, super.name, super.threshold, super.errorHandler})
+      : buffer = StringBuffer();
+
+  @override
+  void doAppend(LoggingEvent event) {
+    buffer.writeln(layout!.format(event));
+    if (!layout!.ignoresException() && event.exception != null) {
+      buffer.writeln('Exception: ${event.message}');
+      buffer.writeln(event.stackTrace);
+    }
+  }
+}

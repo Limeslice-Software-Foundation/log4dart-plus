@@ -18,7 +18,7 @@
 /// errors are hard to predict and to reproduce.
 abstract class ErrorHandler {
   /// This method is invoked to handle the error.
-  void error(String message, [Exception ex]);
+  void error(String message, [Exception? ex]);
 
   /// Set the appender for which errors are handled.
   void setAppender(String appenderName);
