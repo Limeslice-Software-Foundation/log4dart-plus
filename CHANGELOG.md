@@ -1,9 +1,14 @@
+## 0.0.4
+- Add Logger class.
+- Add Appender class.
+- Add LogManager class.
+
 ## 0.0.3
-- Fix Readme
-- Add LoggingEvent class
+- Fix Readme.
+- Add LoggingEvent class.
 
 ## 0.0.2
-- Add Level class
+- Add Level class.
 
 ## 0.0.1
 - Initial version.

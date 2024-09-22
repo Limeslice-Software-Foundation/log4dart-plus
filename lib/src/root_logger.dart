@@ -13,18 +13,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// Log4Dart Plus is a versatile and highly configurable logging framework
-/// for Dart / Flutter applications to assist the deployment of logging for
-/// various use cases.
-library;
+import 'level.dart';
+import 'logger.dart';
 
-export 'src/level.dart';
-export 'src/logger.dart';
-export 'src/logging_event.dart';
-export 'src/log_manager.dart';
-export 'src/error/error_handler.dart';
-export 'src/error/only_once_error_handler.dart';
-export 'src/appender/appender.dart';
-export 'src/appender/console_appender.dart';
-export 'src/layout/layout.dart';
-export 'src/layout/simple_layout.dart';
+/// The root of the logger hierarchy.
+/// The root logger always exists and never has a parent.
+class RootLogger extends Logger {
+  /// Reference to the one and only root logger instance
+  static final RootLogger _singleton = RootLogger._internal();
+
+  /// Factory method to return the instance.
+  factory RootLogger() {
+    return _singleton;
+  }
+
+  /// Internal contructor that creates the instance.
+  RootLogger._internal() : super(name: 'ROOT') {
+    super.level = Level.all;
+  }
+}
