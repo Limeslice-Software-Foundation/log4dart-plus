@@ -12,7 +12,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import 'dart:io';
+
+import 'package:commons_config/commons_config.dart';
+
 import 'appender/console_appender.dart';
+import 'configuration/configuration_loader.dart';
 import 'layout/simple_layout.dart';
 import 'log_manager.dart';
 
@@ -22,5 +27,20 @@ class LogConfigurator {
   static void doBasicConfiguration() {
     LogManager.getRootLogger()
         .addAppender(ConsoleAppender(layout: SimpleLayout()));
+  }
+
+  /// Configure the logging system reading the properties file at the given
+  /// path.
+  static void doPropertiesConfiguration(String path) {
+    PropertiesConfiguration propertiesConfiguration =
+        PropertiesConfiguration(file: File(path));
+    propertiesConfiguration.load();
+    configure(propertiesConfiguration);
+  }
+
+  /// Configure the logging system using the given configuration.
+  static void configure(Configuration configuration) {
+    ConfigurationLoader loader = ConfigurationLoader();
+    loader.configureFromConfiguration(configuration);
   }
 }

@@ -42,7 +42,8 @@ void main() {
         message: 'Debug Message',
         loggerName: 'TestLogger'));
     expect(appender.buffer.isNotEmpty, equals(true));
-    expect(appender.buffer.toString(), equals('DEBUG - Debug Message\n'));
+    expect(appender.buffer.toString(),
+        equals('TestLogger: DEBUG - Debug Message\n'));
 
     appender.buffer.clear();
     appender.append(LoggingEvent(
@@ -50,7 +51,8 @@ void main() {
         message: 'Fatal Message',
         loggerName: 'TestLogger'));
     expect(appender.buffer.isNotEmpty, equals(true));
-    expect(appender.buffer.toString(), equals('FATAL - Fatal Message\n'));
+    expect(appender.buffer.toString(),
+        equals('TestLogger: FATAL - Fatal Message\n'));
   });
 
   test('Test close', () {
@@ -59,7 +61,8 @@ void main() {
         message: 'Debug Message',
         loggerName: 'TestLogger'));
     expect(appender.buffer.isNotEmpty, equals(true));
-    expect(appender.buffer.toString(), equals('DEBUG - Debug Message\n'));
+    expect(appender.buffer.toString(),
+        equals('TestLogger: DEBUG - Debug Message\n'));
 
     appender.close();
     expect(appender.closed, equals(true));
@@ -68,6 +71,7 @@ void main() {
         message: 'Fatal Message',
         loggerName: 'TestLogger'));
     expect(appender.buffer.isNotEmpty, equals(true));
-    expect(appender.buffer.toString(), equals('DEBUG - Debug Message\n'));
+    expect(appender.buffer.toString(),
+        equals('TestLogger: DEBUG - Debug Message\n'));
   });
 }

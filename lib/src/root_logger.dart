@@ -19,6 +19,9 @@ import 'logger.dart';
 /// The root of the logger hierarchy.
 /// The root logger always exists and never has a parent.
 class RootLogger extends Logger {
+  /// Name of the root logger.
+  static final String rootName = 'ROOT';
+
   /// Reference to the one and only root logger instance
   static final RootLogger _singleton = RootLogger._internal();
 
@@ -28,7 +31,7 @@ class RootLogger extends Logger {
   }
 
   /// Internal contructor that creates the instance.
-  RootLogger._internal() : super(name: 'ROOT') {
+  RootLogger._internal() : super(name: rootName) {
     super.level = Level.all;
   }
 }

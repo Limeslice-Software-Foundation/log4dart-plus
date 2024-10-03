@@ -80,8 +80,9 @@ class Level {
   }
 
   /// Parse the given string name to a Level. If an unknown level name is given
-  /// then Level.all is returned.
-  Level toLevel(String string) {
+  /// then the default value is used. If no default value is given then
+  ///  Level.all is returned.
+  static Level toLevel(String string, [Level? defaultValue]) {
     switch (string.toLowerCase().trim()) {
       case 'off':
         return off;
@@ -98,7 +99,7 @@ class Level {
       case 'trace':
         return trace;
     }
-    return all;
+    return defaultValue ?? all;
   }
 
   /// Return the name of this level.

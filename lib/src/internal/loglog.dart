@@ -16,6 +16,10 @@
 /// This class used to output log statements from within the log4dart_plus
 /// package.
 class LogLog {
+  /// Defining this value makes Log4Dart Plus print internal debug
+  /// statements to the console using <code>print</code>.
+  static String debugKey = 'log4dart.debug';
+
   /// The quiet mode flag.
   static bool _quietMode = false;
 
@@ -45,6 +49,12 @@ class LogLog {
   static void debug(String msg) {
     if (_debugEnabled && !_quietMode) {
       print(prefix + msg);
+    }
+  }
+
+  static void warn(String msg) {
+    if (!_quietMode) {
+      print(warnPrefix + msg);
     }
   }
 

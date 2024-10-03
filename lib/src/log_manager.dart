@@ -116,4 +116,8 @@ class LogManager {
   static void debug(bool debug) {
     LogLog.setDebug(debug);
   }
+
+  static void quietMode(bool quiet) {
+    LogLog.setQuiet(quiet);
+  }
 }

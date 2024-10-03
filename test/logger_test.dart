@@ -51,10 +51,11 @@ void main() {
     expect(
         appender.buffer.toString(),
         equals(
-            'INFO - Info message\nWARN - Warn message\nERROR - Error message\nFATAL - Fatal message\n'));
+            'TestLogger: INFO - Info message\nTestLogger: WARN - Warn message\nTestLogger: ERROR - Error message\nTestLogger: FATAL - Fatal message\n'));
   });
 
   test('Test remove appenders', () {
+    LogManager.quietMode(true);
     logger.removeAllAppenders();
     logger.info('Info message');
     String expected = '';
@@ -66,7 +67,7 @@ void main() {
     logger.info('Info message');
     logger.close();
     logger.warn('Warn message');
-    String expected = 'INFO - Info message\n';
+    String expected = 'TestLogger: INFO - Info message\n';
     String actual = appender.buffer.toString();
     expect(actual, equals(expected));
   });
