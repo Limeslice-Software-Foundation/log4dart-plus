@@ -63,4 +63,10 @@ abstract class Appender {
   bool isAsSevereAsThreshold(Level level) {
     return threshold == null ? true : level.isGreaterOrEqual(threshold!);
   }
+
+  /// Return a String representation of this appender.
+  @override
+  String toString() {
+    return '${runtimeType.toString()}{layout: $layout, threshold: $threshold, errorHandler: $errorHandler, closed: $closed, name: $name}';
+  }
 }

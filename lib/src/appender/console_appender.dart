@@ -18,8 +18,10 @@ import '../logging_event.dart';
 /// ConsoleAppender appends log events to the console using a Dart's
 /// <code>print</code> method.
 class ConsoleAppender extends Appender {
+  static const String appenderName = 'ConsoleAppender';
+
   /// Create a new appender using the given Layout.
-  ConsoleAppender({required super.layout}) : super(name: 'ConsoleAppender');
+  ConsoleAppender({super.layout, super.name});
 
   /// Append the logging event.
   @override

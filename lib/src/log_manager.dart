@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import 'internal/loglog.dart';
+import 'level.dart';
 import 'logger.dart';
 import 'root_logger.dart';
 
@@ -115,5 +116,17 @@ class LogManager {
   /// Enable outputting debug messages.
   static void debug(bool debug) {
     LogLog.setDebug(debug);
+  }
+
+  static void quietMode(bool quiet) {
+    LogLog.setQuiet(quiet);
+  }
+
+  static Future<void> resetConfiguration() async {
+    await shutdown();
+    instances.clear();
+    await _rootLogger.close();
+    _rootLogger.appenders.clear();
+    _rootLogger.level = Level.debug;
   }
 }

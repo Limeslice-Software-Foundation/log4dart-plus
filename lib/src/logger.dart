@@ -36,6 +36,12 @@ class Logger {
   /// Create a new instance using the given name, level and parent.
   Logger({required this.name, this.level, this.parent}) : appenders = [];
 
+  /// Return a String representation of this logger.
+  @override
+  String toString() {
+    return '${runtimeType.toString()}{name: $name, level: $level, appenders: $appenders, parent: $parent}';
+  }
+
   /// Close this logger and all appenders attached to it.
   Future<void> close() async {
     for (Appender appender in appenders) {

@@ -23,6 +23,8 @@ Note that this project is still in its early stages and so may not yet provide c
 
 ## About The Project
 
+Log4Dart Plus is an open source project based on the work of many authors. It allows the developer to control which log statements are output with arbitrary granularity. It is fully configurable at runtime using external configuration files. Best of all, Log4Dart Plus has a gentle learning curve.
+
 ### Features
 - Hierarchical Logger allows for advanced configuration of logging at various levels.
 - Various and multiple appenders can be configured for advanced logging capability.
@@ -50,7 +52,7 @@ import 'package:log4dart_plus/log4dart_plus.dart';
 
 ## Usage
 
-See the [User Guide](docs/user-guide.md) for detailed information.
+See the [User Guide](doc/user-guide.md) for detailed information.
 
 ## Roadmap
 

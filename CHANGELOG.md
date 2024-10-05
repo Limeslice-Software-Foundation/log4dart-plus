@@ -1,3 +1,6 @@
+## 0.0.5
+- Ability to load configuration from properties file
+
 ## 0.0.4
 - Add Logger class.
 - Add Appender class.

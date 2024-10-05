@@ -48,8 +48,10 @@ void main() {
 
   test('Test format', () {
     LoggingEvent event = LoggingEvent(
-        level: Level.debug, message: 'This is a debug message', loggerName: '');
-    String expected = 'DEBUG - This is a debug message';
+        level: Level.debug,
+        message: 'This is a debug message',
+        loggerName: 'TestLogger');
+    String expected = 'TestLogger: DEBUG - This is a debug message';
     String actual = layout.format(event);
     expect(actual, equals(expected));
   });
