@@ -25,8 +25,8 @@ import 'log_manager.dart';
 class LogConfigurator {
   /// Perform a basic configuration. This used SimpleLayout and ConsoleAppender.
   static void doBasicConfiguration() {
-    LogManager.getRootLogger()
-        .addAppender(ConsoleAppender(layout: SimpleLayout()));
+    LogManager.getRootLogger().addAppender(ConsoleAppender(
+        layout: SimpleLayout(), name: ConsoleAppender.appenderName));
   }
 
   /// Configure the logging system reading the properties file at the given

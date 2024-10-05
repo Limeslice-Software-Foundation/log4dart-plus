@@ -52,7 +52,7 @@ import 'package:log4dart_plus/log4dart_plus.dart';
 
 ## Usage
 
-See the [User Guide](docs/user-guide.md) for detailed information.
+See the [User Guide](doc/user-guide.md) for detailed information.
 
 ## Roadmap
 

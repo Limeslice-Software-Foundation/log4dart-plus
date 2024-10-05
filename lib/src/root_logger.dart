@@ -32,6 +32,6 @@ class RootLogger extends Logger {
 
   /// Internal contructor that creates the instance.
   RootLogger._internal() : super(name: rootName) {
-    super.level = Level.all;
+    super.level = Level.debug;
   }
 }
