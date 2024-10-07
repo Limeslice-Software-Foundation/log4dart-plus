@@ -19,13 +19,25 @@ import 'level.dart';
 /// is made to log then a LoggingEvent instance is created. This instance is
 /// passed around to the different Log4Dart Plus components.
 class LoggingEvent {
+  /// The severity level of this event.
   Level level;
+
+  /// The log message of this event.
   String message;
+
+  /// The instance of this event.
   DateTime instant;
+
+  /// The logger that generated this event.
   String loggerName;
+
+  /// The exception of this event.
   Exception? exception;
+
+  /// The stack trave of this event.
   StackTrace? stackTrace;
 
+  /// Create a new logging event
   LoggingEvent(
       {required this.level,
       required this.message,

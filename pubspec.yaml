@@ -1,6 +1,6 @@
 name: log4dart_plus
 description: Log4Dart Plus is a versatile and highly configurable logging framework for Dart / Flutter applications.
-version: 0.0.5
+version: 0.0.6
 repository: https://github.com/Limeslice-Software-Foundation/log4dart-plus
 
 environment:
