@@ -15,7 +15,7 @@
 import 'package:log4dart_plus/log4dart_plus.dart';
 import 'package:test/test.dart';
 
-import 'test_appender.dart';
+import 'appender/test_appender.dart';
 
 void main() {
   late TestAppender appender;

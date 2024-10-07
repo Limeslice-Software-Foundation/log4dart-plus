@@ -17,6 +17,8 @@ import 'dart:io';
 import 'package:log4dart_plus/log4dart_plus.dart';
 import 'package:test/test.dart';
 
+const rootLoggerName = 'ROOT';
+
 void main() {
   setUp(() async {
     LogManager.quietMode(true);
@@ -24,12 +26,17 @@ void main() {
 
   tearDown(() async {
     await LogManager.resetConfiguration();
+    File logFile = File('example.log');
+    bool exists = await logFile.exists();
+    if (exists) {
+      await logFile.delete();
+    }
   });
 
   test('Test root logger - no configuration', () {
     Logger rootLogger = LogManager.getRootLogger();
     expect(rootLogger, equals(isNotNull));
-    expect(rootLogger.name, equals('ROOT'));
+    expect(rootLogger.name, equals(rootLoggerName));
     expect(rootLogger.parent, equals(isNull));
     expect(rootLogger.level, equals(isNotNull));
     expect(rootLogger.level, equals(Level.debug));
@@ -42,7 +49,7 @@ void main() {
     LogConfigurator.doBasicConfiguration();
     Logger rootLogger = LogManager.getRootLogger();
     expect(rootLogger, equals(isNotNull));
-    expect(rootLogger.name, equals('ROOT'));
+    expect(rootLogger.name, equals(rootLoggerName));
     expect(rootLogger.parent, equals(isNull));
     expect(rootLogger.level, equals(isNotNull));
     expect(rootLogger.level, equals(Level.debug));
@@ -88,13 +95,13 @@ void main() {
 
     Logger rootLogger = LogManager.getRootLogger();
     expect(rootLogger, equals(isNotNull));
-    expect(rootLogger.name, equals('ROOT'));
+    expect(rootLogger.name, equals(rootLoggerName));
     expect(rootLogger.parent, equals(isNull));
     expect(rootLogger.level, equals(isNotNull));
     expect(rootLogger.level, equals(Level.debug));
     expect(rootLogger.appenders, equals(isNotNull));
     expect(rootLogger.appenders, equals(isNotEmpty));
-    expect(rootLogger.appenders.length, equals(1));
+    expect(rootLogger.appenders.length, equals(2));
 
     Appender appender = rootLogger.appenders[0];
     expect(appender is ConsoleAppender, equals(true));
@@ -102,6 +109,15 @@ void main() {
     expect(appender.errorHandler, equals(isNull));
     expect(appender.closed, equals(false));
     expect(appender.name, equals('stdout'));
+    expect(appender.layout, equals(isNotNull));
+    expect(appender.layout is SimpleLayout, equals(true));
+
+    appender = rootLogger.appenders[1];
+    expect(appender is FileAppender, equals(true));
+    expect(appender.threshold, equals(Level.info));
+    expect(appender.errorHandler, equals(isNull));
+    expect(appender.closed, equals(false));
+    expect(appender.name, equals('F'));
     expect(appender.layout, equals(isNotNull));
     expect(appender.layout is SimpleLayout, equals(true));
 

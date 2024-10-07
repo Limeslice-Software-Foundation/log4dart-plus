@@ -12,31 +12,46 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import 'appender.dart';
+import 'dart:io';
+
 import '../logging_event.dart';
+import 'appender.dart';
 
-/// ConsoleAppender appends log events to the console using a Dart's
-/// <code>print</code> method.
-class ConsoleAppender extends Appender {
-  /// The name of this appender type.
-  static const String appenderName = 'ConsoleAppender';
+/// Appends log messages to an IOSink.
+class IOSinkAppender extends Appender {
+  /// The IOSink to use
+  late IOSink? iosink;
 
-  /// Create a new appender using the given Layout.
-  ConsoleAppender({super.layout, super.name});
+  /// Create a new instance with the given IOSink.
+  IOSinkAppender(
+      {this.iosink,
+      super.layout,
+      super.name,
+      super.threshold,
+      super.errorHandler});
 
-  /// Append the logging event.
   @override
   void doAppend(LoggingEvent event) {
-    print(layout!.format(event));
-    if (!layout!.ignoresException() && event.exception != null) {
-      print('Exception: ${event.message}');
-      print(event.stackTrace);
+    if (iosink != null) {
+      iosink!.writeln(layout!.format(event));
+      if (!layout!.ignoresException() && event.exception != null) {
+        iosink!.writeln('Exception: ${event.message}');
+        iosink!.writeln(event.stackTrace);
+      }
     }
   }
 
-  /// Whether this appender requires a layout or not. Returns true.
   @override
   bool requiresLayout() {
     return true;
+  }
+
+  @override
+  Future<void> close() async {
+    if (!super.closed && iosink != null) {
+      await iosink!.close();
+      super.closed = true;
+      iosink = null;
+    }
   }
 }

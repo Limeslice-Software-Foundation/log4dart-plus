@@ -12,22 +12,29 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import 'dart:io';
 
-/// Log4Dart Plus is a versatile and highly configurable logging framework
-/// for Dart / Flutter applications to assist the deployment of logging for
-/// various use cases.
-library;
+import 'iosink_appender.dart';
 
-export 'src/appender/appender.dart';
-export 'src/appender/console_appender.dart';
-export 'src/appender/iosink_appender.dart';
-export 'src/appender/file_appender.dart';
-export 'src/level.dart';
-export 'src/log_configurator.dart';
-export 'src/logger.dart';
-export 'src/logging_event.dart';
-export 'src/log_manager.dart';
-export 'src/error/error_handler.dart';
-export 'src/error/only_once_error_handler.dart';
-export 'src/layout/layout.dart';
-export 'src/layout/simple_layout.dart';
+/// Appends log messages to a file.
+class FileAppender extends IOSinkAppender {
+  /// The name of this appender type.
+  static const String appenderName = 'FileAppender';
+
+  /// The file to append log messages to.
+  late File file;
+
+  /// Create a new instance, logging to the given file.
+  FileAppender(
+      {required String fileName,
+      super.layout,
+      super.name,
+      super.threshold,
+      super.errorHandler,
+      bool append = false}) {
+    file = File(fileName);
+    file.createSync(recursive: true);
+    super.iosink =
+        file.openWrite(mode: append ? FileMode.append : FileMode.write);
+  }
+}

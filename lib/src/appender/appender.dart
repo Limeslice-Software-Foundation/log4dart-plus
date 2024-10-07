@@ -53,6 +53,9 @@ abstract class Appender {
 
   /// Append the logging event.
   void append(LoggingEvent event) {
+    if (!isAsSevereAsThreshold(event.level)) {
+      return;
+    }
     if (!closed) {
       doAppend(event);
     }

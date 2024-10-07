@@ -121,6 +121,7 @@ class ConfigurationLoader {
     // Appender was not previously initialized.
     String prefix = appenderPrefix + appenderName;
     String layoutPrefix = "$prefix.layout";
+    String thresholdPrefix = "$prefix.threshold";
 
     appender =
         AppenderFactory.createAppender(configuration, prefix, appenderName);
@@ -137,6 +138,10 @@ class ConfigurationLoader {
         LogLog.debug(
             "Appender \"$appenderName\" requires a layout but could not configure layout for it.");
       }
+    }
+    String levelStr = configuration.getString(thresholdPrefix, '');
+    if (levelStr.isNotEmpty) {
+      appender.threshold = Level.toLevel(levelStr, Level.debug);
     }
 
     registry[appenderName] = appender;

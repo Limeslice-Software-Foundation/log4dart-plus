@@ -1,3 +1,6 @@
+## 0.0.6
+- Add FileAppender
+
 ## 0.0.5
 - Ability to load configuration from properties file
 
