@@ -119,7 +119,9 @@ void main() {
     expect(appender.closed, equals(false));
     expect(appender.name, equals('F'));
     expect(appender.layout, equals(isNotNull));
-    expect(appender.layout is SimpleLayout, equals(true));
+    expect(appender.layout is DateLayout, equals(true));
+    DateLayout dateLayout = appender.layout as DateLayout;
+    expect(dateLayout.dateFormat!.pattern, equals('yyyy-MM-dd HH:mm:ss'));
 
     expect(LogManager.instances, equals(isNotEmpty));
     Logger logger = LogManager.getLogger('com.foo');
