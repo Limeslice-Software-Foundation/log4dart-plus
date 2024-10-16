@@ -26,6 +26,7 @@ export 'src/error/error_handler.dart';
 export 'src/error/only_once_error_handler.dart';
 export 'src/layout/date_layout.dart';
 export 'src/layout/layout.dart';
+export 'src/layout/pattern_layout.dart';
 export 'src/layout/simple_layout.dart';
 export 'src/level.dart';
 export 'src/log_configurator.dart';

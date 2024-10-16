@@ -23,23 +23,46 @@ void main() {
 
   setUpAll(() {
     configuration = BaseConfiguration();
-    configuration.setProperty('log4dart.appender.R.layout', 'PatternLayout');
-    configuration.setProperty(
-        'log4dart.appender.stdout.layout', 'SimpleLayout');
+    configuration.setProperty('log4dart.appender.N.layout', 'NoExistLayout');
+    configuration.setProperty('log4dart.appender.S.layout', 'SimpleLayout');
+    configuration.setProperty('log4dart.appender.D.layout', 'DateLayout');
+    configuration.setProperty('log4dart.appender.D.layout.pattern', 'yyyy-MM-dd HH:mm:ss');
+    configuration.setProperty('log4dart.appender.P.layout', 'PatternLayout');
+    configuration.setProperty('log4dart.appender.P.layout.pattern', '[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.30l - %m%n');
   });
 
   test('Test create non existent layout', () {
-    String name = 'R';
+    String name = 'N';
     Layout? actual =
         LayoutFactory.createLayout(configuration, '$key.$name.layout');
     expect(actual, equals(isNull));
   });
 
-  test('Test create layout', () {
-    String name = 'stdout';
+  test('Test create Simple layout', () {
+    String name = 'S';
     Layout? actual =
         LayoutFactory.createLayout(configuration, '$key.$name.layout');
     expect(actual, equals(isNotNull));
     expect(actual is SimpleLayout, equals(true));
+  });
+
+  test('Test create Date layout', () {
+    String name = 'D';
+    Layout? actual =
+        LayoutFactory.createLayout(configuration, '$key.$name.layout');
+    expect(actual, equals(isNotNull));
+    expect(actual is DateLayout, equals(true));
+    DateLayout dl = actual as DateLayout;
+    expect(dl.dateFormat!.pattern, equals('yyyy-MM-dd HH:mm:ss'));
+  });
+
+  test('Test create Pattern layout', () {
+    String name = 'P';
+    Layout? actual =
+        LayoutFactory.createLayout(configuration, '$key.$name.layout');
+    expect(actual, equals(isNotNull));
+    expect(actual is PatternLayout, equals(true));
+    PatternLayout pl = actual as PatternLayout;
+    expect(pl.pattern, equals('[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.30l - %m%n'));
   });
 }
