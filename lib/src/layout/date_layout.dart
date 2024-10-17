@@ -19,8 +19,10 @@ import 'package:log4dart_plus/src/internal/loglog.dart';
 import 'layout.dart';
 import '../logging_event.dart';
 
-/// Provides a layout that prints the logging event instant (DateTime) using a DateFormat. 
-/// For information on date formatting see the documentation for DateFormat.
+/// Provides a layout that prints the logging event instant (DateTime) using a 
+/// DateFormat. For information on date formatting see the documentation for 
+/// the DateFormat class in the <a href="https://pub.dev/packages/intl">intl</a> 
+/// package.
 class DateLayout extends Layout {
   /// Internal name of this layout.
   static const String layoutName = 'DateLayout';
@@ -42,7 +44,7 @@ class DateLayout extends Layout {
     }
   }
 
-  /// Return a String representation of this SimpleLayout.
+  /// Return a String representation of this Layout.
   @override
   String toString() {
     return '$layoutName{}';
