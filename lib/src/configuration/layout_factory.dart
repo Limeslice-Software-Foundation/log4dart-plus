@@ -24,10 +24,10 @@ class LayoutFactory {
           return DateLayout(dateFormat: dateFormat);
         }
       case PatternLayout.layoutName:
-      {
-        String pattern = configuration.getString('$prefixKey.pattern', '');
-        return PatternLayout(pattern);
-      }
+        {
+          String pattern = configuration.getString('$prefixKey.pattern', '');
+          return PatternLayout(pattern);
+        }
     }
 
     return null;

@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 void main() {
   late Layout layout;
 
-  setUpAll((){
+  setUpAll(() {
     layout = DateLayout(dateFormat: DateFormat('yyyy-MM-dd HH:mm:ss'));
   });
 
@@ -53,7 +53,8 @@ void main() {
         message: 'This is a debug message',
         loggerName: 'TestLogger');
     event.instant = DateTime.parse('1969-07-20 20:18:04Z');
-    String expected = '1969-07-20 20:18:04 TestLogger: DEBUG - This is a debug message';
+    String expected =
+        '1969-07-20 20:18:04 TestLogger: DEBUG - This is a debug message';
     String actual = layout.format(event);
     expect(actual, equals(expected));
   });
