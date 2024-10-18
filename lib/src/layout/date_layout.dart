@@ -19,9 +19,9 @@ import 'package:log4dart_plus/src/internal/loglog.dart';
 import 'layout.dart';
 import '../logging_event.dart';
 
-/// Provides a layout that prints the logging event instant (DateTime) using a 
-/// DateFormat. For information on date formatting see the documentation for 
-/// the DateFormat class in the <a href="https://pub.dev/packages/intl">intl</a> 
+/// Provides a layout that prints the logging event instant (DateTime) using a
+/// DateFormat. For information on date formatting see the documentation for
+/// the DateFormat class in the <a href="https://pub.dev/packages/intl">intl</a>
 /// package.
 class DateLayout extends Layout {
   /// Internal name of this layout.
@@ -36,7 +36,7 @@ class DateLayout extends Layout {
   /// Formats the logging event printing the Level and the message.
   @override
   String format(LoggingEvent event) {
-    if(dateFormat != null) {
+    if (dateFormat != null) {
       return '${dateFormat!.format(event.instant)} ${event.loggerName}: ${event.level.toString()} - ${event.message}';
     } else {
       LogLog.error('DateFormat is null.');
@@ -48,5 +48,5 @@ class DateLayout extends Layout {
   @override
   String toString() {
     return '$layoutName{}';
-  }  
+  }
 }

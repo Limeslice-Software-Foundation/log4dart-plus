@@ -26,9 +26,11 @@ void main() {
     configuration.setProperty('log4dart.appender.N.layout', 'NoExistLayout');
     configuration.setProperty('log4dart.appender.S.layout', 'SimpleLayout');
     configuration.setProperty('log4dart.appender.D.layout', 'DateLayout');
-    configuration.setProperty('log4dart.appender.D.layout.pattern', 'yyyy-MM-dd HH:mm:ss');
+    configuration.setProperty(
+        'log4dart.appender.D.layout.pattern', 'yyyy-MM-dd HH:mm:ss');
     configuration.setProperty('log4dart.appender.P.layout', 'PatternLayout');
-    configuration.setProperty('log4dart.appender.P.layout.pattern', '[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.30l - %m%n');
+    configuration.setProperty('log4dart.appender.P.layout.pattern',
+        '[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.30l - %m%n');
   });
 
   test('Test create non existent layout', () {
@@ -63,6 +65,7 @@ void main() {
     expect(actual, equals(isNotNull));
     expect(actual is PatternLayout, equals(true));
     PatternLayout pl = actual as PatternLayout;
-    expect(pl.pattern, equals('[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.30l - %m%n'));
+    expect(
+        pl.pattern, equals('[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.30l - %m%n'));
   });
 }

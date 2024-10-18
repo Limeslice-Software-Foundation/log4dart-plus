@@ -1,4 +1,3 @@
-
 // Licensed to the Limeslice Software Foundation (LSF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with
 // this work for additional information regarding copyright ownership.
@@ -21,7 +20,7 @@ void main() {
   late PatternLayout layout;
   late LoggingEvent event;
 
-  setUpAll((){
+  setUpAll(() {
     layout = PatternLayout();
     event = LoggingEvent(
         level: Level.warn,
@@ -70,7 +69,8 @@ void main() {
 
   test('Test complex message format', () {
     layout.pattern = '%s %d %l - %m%n';
-    String expected = 'WARN July 20, 1969 8:18:04 PM AReallyLongLoggerName - This is a warn message\n';
+    String expected =
+        'WARN July 20, 1969 8:18:04 PM AReallyLongLoggerName - This is a warn message\n';
     String actual = layout.format(event);
     expect(actual, equals(expected));
   });
@@ -92,15 +92,20 @@ void main() {
     expect(layout.format(event), equals('1969-07-20 20:04:18'));
 
     layout.pattern = '%s %d{yyyy-MM-dd HH:ss:mm} - %m';
-    expect(layout.format(event), equals('WARN 1969-07-20 20:04:18 - This is a warn message'));
+    expect(layout.format(event),
+        equals('WARN 1969-07-20 20:04:18 - This is a warn message'));
 
     layout.pattern = '[%-5s] %d{yyyy-MM-dd} %.20l - %m%n';
-    expect(layout.format(event), equals('[WARN ] 1969-07-20 ReallyLongLoggerName - This is a warn message\n'));
+    expect(
+        layout.format(event),
+        equals(
+            '[WARN ] 1969-07-20 ReallyLongLoggerName - This is a warn message\n'));
   });
 
   test('Test full complex message format', () {
     layout.pattern = '[%-5s] %d{yyyy-MM-dd HH:ss:mm} %% %.20l - %m%n';
-    String expected = '[WARN ] 1969-07-20 20:04:18 % ReallyLongLoggerName - This is a warn message\n';
+    String expected =
+        '[WARN ] 1969-07-20 20:04:18 % ReallyLongLoggerName - This is a warn message\n';
     String actual = layout.format(event);
     expect(actual, equals(expected));
   });

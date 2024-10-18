@@ -33,4 +33,3 @@ export 'src/log_configurator.dart';
 export 'src/logger.dart';
 export 'src/logging_event.dart';
 export 'src/log_manager.dart';
-
