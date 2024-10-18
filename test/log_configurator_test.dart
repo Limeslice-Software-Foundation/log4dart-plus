@@ -101,7 +101,7 @@ void main() {
     expect(rootLogger.level, equals(Level.debug));
     expect(rootLogger.appenders, equals(isNotNull));
     expect(rootLogger.appenders, equals(isNotEmpty));
-    expect(rootLogger.appenders.length, equals(2));
+    expect(rootLogger.appenders.length, equals(3));
 
     Appender appender = rootLogger.appenders[0];
     expect(appender is ConsoleAppender, equals(true));
