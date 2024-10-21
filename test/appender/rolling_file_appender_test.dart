@@ -20,14 +20,29 @@ import 'package:test/test.dart';
 const String testLoggerName = 'ROOT';
 
 void main() {
-  File logFile = File('test/out/file-app-test.log');
+  File logFile = File('test/out/test.log');
 
-  setUpAll(() {});
+  setUpAll(() async {
+    bool exists = await logFile.exists();
+    if (exists) {
+      await logFile.delete();
+    }
+  });
 
   tearDownAll(() async {
     bool exists = await logFile.exists();
     if (exists) {
       await logFile.delete();
+    }
+    File file = File('${logFile.absolute.path}.1');
+    exists = await file.exists();
+    if(exists) {
+      await file.delete();
+    }
+    file = File('${logFile.absolute.path}.2');
+    exists = await file.exists();
+    if(exists) {
+      await file.delete();
     }
   });
 
@@ -36,38 +51,26 @@ void main() {
     expect(actualContent, equals(expectedContent));
   }
 
-  test('Test file appender', () async {
-    FileAppender appender =
-        FileAppender(fileName: logFile.path, layout: SimpleLayout());
-    appender.append(LoggingEvent(
-        level: Level.debug,
-        message: 'A debug message',
-        loggerName: testLoggerName));
-    appender.append(LoggingEvent(
-        level: Level.info,
-        message: 'An info message',
-        loggerName: testLoggerName));
-    await appender.close();
-    checkFileContent(
-        'ROOT: DEBUG - A debug message\nROOT: INFO - An info message\n');
-  });
-
-  test('Test file appender append mode', () async {
-    Appender appender = FileAppender(
+  test('Test rolling file appender', () async {
+    RollingFileAppender appender = RollingFileAppender(
         fileName: logFile.path,
-        layout: SimpleLayout(),
-        threshold: Level.error,
-        append: true);
-    appender.append(LoggingEvent(
-        level: Level.debug,
-        message: 'A debug message',
-        loggerName: testLoggerName));
-    appender.append(LoggingEvent(
-        level: Level.error,
-        message: 'An error message',
-        loggerName: testLoggerName));
-    await appender.close();
+        layout: PatternLayout('[%-5s] %l - %m%n'));
+    appender.maxBackupIndex = 2;
+    appender.maxFileSize = 1024;
+    LogManager.getRootLogger().addAppender(appender);
+
+    for (int i = 0; i < 40; ++i) {
+      LogManager.getRootLogger()
+          .debug('This is a really long debug message: $i');
+    }
+
+    await LogManager.shutdown();
+
+    expect(File(logFile.absolute.path).existsSync(), equals(true));
+    expect(File('${logFile.absolute.path}.1').existsSync(), equals(true));
+    expect(File('${logFile.absolute.path}.2').existsSync(), equals(true));
+
     checkFileContent(
-        'ROOT: DEBUG - A debug message\nROOT: INFO - An info message\nROOT: ERROR - An error message\n');
+        '[DEBUG] ROOT - This is a really long debug message: 38\n[DEBUG] ROOT - This is a really long debug message: 39\n');
   });
 }
