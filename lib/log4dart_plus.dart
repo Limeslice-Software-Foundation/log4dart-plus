@@ -22,6 +22,7 @@ export 'src/appender/appender.dart';
 export 'src/appender/console_appender.dart';
 export 'src/appender/iosink_appender.dart';
 export 'src/appender/file_appender.dart';
+export 'src/appender/rolling_file_appender.dart';
 export 'src/error/error_handler.dart';
 export 'src/error/only_once_error_handler.dart';
 export 'src/layout/date_layout.dart';

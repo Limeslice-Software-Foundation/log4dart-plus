@@ -1,3 +1,6 @@
+## 0.0.8
+- Add RollingFileAppender class
+
 ## 0.0.7
 - Add DateLayout class
 - Add PatternLayout class

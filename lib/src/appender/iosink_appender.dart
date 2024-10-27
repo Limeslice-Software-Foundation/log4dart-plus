@@ -35,7 +35,7 @@ class IOSinkAppender extends Appender {
     if (iosink != null) {
       iosink!.writeln(layout!.format(event));
       if (!layout!.ignoresException() && event.exception != null) {
-        iosink!.writeln('Exception: ${event.message}');
+        iosink!.writeln('Exception: ${event.exception}');
         iosink!.writeln(event.stackTrace);
       }
     }

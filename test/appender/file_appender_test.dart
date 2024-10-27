@@ -20,7 +20,7 @@ import 'package:test/test.dart';
 const String testLoggerName = 'ROOT';
 
 void main() {
-  File logFile = File('test/out/test.log');
+  File logFile = File('test/out/file-app-test.log');
 
   setUpAll(() {});
 
