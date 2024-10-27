@@ -36,12 +36,12 @@ void main() {
     }
     File file = File('${logFile.absolute.path}.1');
     exists = await file.exists();
-    if(exists) {
+    if (exists) {
       await file.delete();
     }
     file = File('${logFile.absolute.path}.2');
     exists = await file.exists();
-    if(exists) {
+    if (exists) {
       await file.delete();
     }
   });
@@ -53,8 +53,7 @@ void main() {
 
   test('Test rolling file appender', () async {
     RollingFileAppender appender = RollingFileAppender(
-        fileName: logFile.path,
-        layout: PatternLayout('[%-5s] %l - %m%n'));
+        fileName: logFile.path, layout: PatternLayout('[%-5s] %l - %m%n'));
     appender.maxBackupIndex = 2;
     appender.maxFileSize = 1024;
     LogManager.getRootLogger().addAppender(appender);
