@@ -21,7 +21,9 @@ class SimpleLayout extends Layout {
   /// Internal name of this layout.
   static const String layoutName = 'SimpleLayout';
 
-  /// Formats the logging event printing the Level and the message.
+  /// Formats the logging event printing the Logger name, the Level and the message.
+  /// The format is as follows:
+  /// <code>&lt;logger name&gt;: &lt;level&gt; - &lt;message&gt;</code>
   @override
   String format(LoggingEvent event) {
     return '${event.loggerName}: ${event.level.toString()} - ${event.message}';
