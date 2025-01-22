@@ -44,7 +44,7 @@ The <code>Level</code> class is used to represent logging levels.
 
 ## Logging Event
 
-A <code>LoggingEvent<code> instance contains data specific to a logging statement. The data contained is as follows:
+A <code>LoggingEvent</code> instance contains data specific to a logging statement. The data contained is as follows:
 - Severity of the event.
 - The message (statement) of the logging event.
 - The instant the event is triggered as a <code>DateTime</code> instance.
