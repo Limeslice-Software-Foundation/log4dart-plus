@@ -16,6 +16,8 @@ import 'dart:io';
 
 import 'package:log4dart_plus/log4dart_plus.dart';
 
+/// RollingFileAppender appends logging events to a file and bacs kup the log files when they reach a certain size. 
+/// File size is specified in bytes.
 class RollingFileAppender extends Appender {
   /// Max file size in bytes.
   int maxFileSize = 10 * 1024 * 1024;

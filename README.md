@@ -33,8 +33,6 @@ Log4Dart Plus is an open source project based on the work of many authors. It al
 
 ## Getting Started
 
-Add the package as a dependency.
-
 ### Installation
 Add the package to your dependencies.
 
@@ -50,9 +48,65 @@ Import the library in your code.
 import 'package:log4dart_plus/log4dart_plus.dart';
 ```
 
+### Basic Usage
+
+1. Perform basic configuration
+```Dart
+LogConfigurator.doBasicConfiguration();
+```
+
+2. Get a <code>Logger</code> using the <code>LogManager</code>
+```Dart
+Logger logger = LogManager.getLogger('example');
+```
+
+3. Log a message
+```Dart
+logger.debug('This is a debug message');
+```
+
 ## Usage
 
-See the [User Guide](doc/user-guide.md) for detailed information.
+Log4Dart Plus has three main components: loggers, appenders and layouts. These three types of components work together to enable developers to log messages according to message type and level, and to control at runtime how these messages are formatted and where they are reported.
+
+### Loggers
+
+Loggers are named entities and are used to output logging statements. All loggers exist in a hierarchy and at the top of the hierarchy is the root logger that follows two rules: 
+
+1. It always exists
+2. It cannot be rerieved by name
+
+The <code>LogManager</code> class is responsible for creating and maintaining references to loggers. It provides some static methods to aid in this. To retrieve a logger you can use the <code>getLogger</code> method. As an example:
+
+```Dart
+Logger logger = LogManager.getLogger('myLogger');
+```
+
+### Appenders
+
+Log4Dart Plus allows logging statements to a wide variety of output destination types. In Log4Dart Plus speak, an output destination is called an appender. Currently, appenders exist for the console and files, it is possible to build custom appenders to log to virtually any destination such as a database or even a remote API.
+
+It is also possible to log statements to multiple output destinations simultaneously.
+
+### Layouts
+
+Layouts perform formatting of log messages and allows custom formatting of messages.
+
+### Levels
+
+Levels are used to define the severity of a logging event. The log levels are as follows:
+```
+fatal
+error
+warn
+info
+debug
+trace
+```
+
+The levels have an ordering in severity with fatal being the most severe and trace being the least severe. The Level class is used to represent logging levels.
+
+See the [User Guide](doc/user-guide.md) for more detailed information.
 
 ## Roadmap
 
